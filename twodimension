@@ -1,0 +1,31 @@
+import java.util.Arrays;
+
+public class day203 {
+	public static void main(String[] args) {
+		int [][] mydata = new int[5][];
+		
+		System.out.println(mydata[0]);
+		
+		mydata[0] = new int[5];
+		mydata[1] = new int[]{3, 6,9};
+		
+		int [] data1 = {1,4,7};
+		mydata[2] =data1;
+		
+		for(int i =0;i<mydata.length;i++) {
+			for(int j =0;mydata[i] != null && j<mydata[i].length;j++) {
+				System.out.println(mydata[i][j] +"\t");
+			}
+			
+			System.out.println();
+		}
+		
+		int [][] mydata2 = new int[][] { data1, mydata[1] , new int[] {6,6,6,6} };
+		
+		System.out.println(Arrays.deepToString(mydata2));
+		
+		int [][] mydata3 = {data1, mydata[1], new int[] {6,6,6}};
+		int [][] mydata4 = {{1,2,3,4,5},{6,7,8},{9}, {6,6,6}};		
+		
+	}
+}
