@@ -1,0 +1,185 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+class User210{
+	private String username;
+	private String password;
+	
+	
+	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User210 other = (User210) obj;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
+	
+}
+
+class UserManager210{
+	private User210[] users;
+	private int size;
+	
+	
+	public UserManager210() {
+		users = new User210[5];
+	}
+	
+	public UserManager210(int capacity) {
+		users = new User210[capacity];
+	}
+	
+	public void add(User210 u) {
+		
+		//
+		if(size >= users.length) {
+			users = Arrays.copyOf(users, users.length*2);
+		}
+		users[size] = u;
+		size++;
+	}
+	
+	
+	public boolean usernameExist(String username) {
+		for(int i =0 ;i<size;i++) {
+			if(users[i].getUsername().equals(username)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean userExist(User210 u) {
+		for(int i = 0; i<size; i++) {
+			if(users[i].equals(u)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	
+	
+}
+
+
+
+
+
+public class day210 {
+	
+	
+		static Scanner sc= new Scanner(System.in);
+		static UserManager210 manager = new UserManager210();
+	public static void main(String[] args) {
+		
+		
+		
+	
+		while(true) {
+		System.out.println("choose your operation:");
+		System.out.println("\t 1.sign up 2.sign in 3.log out");
+		int choice = sc.nextInt();
+		switch(choice) {
+		case 1:
+			register();
+		break;
+		
+		
+		case 2:
+			login();
+			break;
+			
+		default:
+				return;
+		}
+		}
+	}
+
+	private static void login() {
+		// TODO Auto-generated method stub
+		System.out.println("Please enter the username : ");
+		String username = sc.next();
+		
+		System.out.println("Please enter the password:");
+		String password = sc.next();
+		
+		User210 user = new User210();
+		user.setUsername(username);
+		user.setPassword(password);
+		
+		if(manager.userExist(user)) {
+			System.out.println("log in successfully!");
+			
+		}else {
+			System.out.println("username or password is wrong!");
+		}
+	}
+
+	private static void register() {
+		// TODO Auto-generated method stub
+		System.out.println("Please enter the username : ");
+		String username = sc.next();
+		
+		while(manager.usernameExist(username)) {
+			System.out.println("Please enter a new name:");
+			username = sc.next();
+		}
+		
+		
+	
+		
+		
+		
+		
+		System.out.println("Please enter the password:");
+		String password = sc.next();
+		User210 user = new User210();
+		user.setUsername(username);
+		user.setPassword(password);
+		manager.add(user);
+		System.out.println("Successfully register!");
+	}
+
+	
+}
