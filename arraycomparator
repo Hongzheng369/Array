@@ -1,0 +1,36 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
+class Product205{
+	String name;
+	int price;
+	public Product205(String name, int price) {
+		super();
+		this.name = name;
+		this.price = price;
+	}
+	@Override
+	public String toString() {
+		return "Product205 [name=" + name + ", price=" + price + "]";
+	}
+	
+}
+public class day205 {	
+	public static void main(String[] args) {
+		Product205 [] data = new Product205[3];
+		data[0] = new Product205("Lenovo", 6800);
+		data[1] = new Product205("Dell", 6600);
+		data[2] = new Product205("Mac", 16800);
+		
+		System.out.println(Arrays.toString(data));
+		
+		Arrays.sort(data, new Comparator<Product205>() {
+			public int compare(Product205 o1, Product205 o2) {
+				return o1.price -o2.price;
+			}
+		});
+			
+		
+	
+ 	}
+}
